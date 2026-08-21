@@ -47,6 +47,8 @@ formulario.addEventListener("submit", function(event) {
     const categoria = document.getElementById("categoria").value;
     const desconto = Number(document.getElementById("desconto").value);
 
+    localStorage.setItem("produto", JSON.stringify(produto));
+
     if (nome === "" || preco <= 0 || categoria === "") {
 
         alert("Preencha todos os campos corretamente!");
