@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas - Drag and Drop</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .area {
+            width: 250px;
+            min-height: 250px;
+            border: 2px solid black;
+            padding: 10px;
+        }
+
+        .tarefa {
+            background-color: lightgray;
+            padding: 15px;
+            margin: 10px;
+            cursor: grab;
+        }
+
+        .destino {
+            background-color: #e8e8e8;
+        }
+
+        .destino.destaque {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Lista de Tarefas</h1>
+
+    <p>Arraste uma tarefa para a área "Concluído".</p>
+
+    <div class="container">
+
+        <!-- Área A Fazer -->
+        <div class="area" id="aFazer">
+            <h2>A Fazer</h2>
+
+            <div class="tarefa" draggable="true">
+                Estudar JavaScript
+            </div>
+
+            <div class="tarefa" draggable="true">
+                Fazer atividade
+            </div>
+
+            <div class="tarefa" draggable="true">
+                Estudar HTML
+            </div>
+        </div>
+
+        <!-- Área Concluído -->
+        <div class="area destino" id="concluido">
+            <h2>Concluído</h2>
+        </div>
+
+    </div>
+
+    <p id="mensagem"></p>
+
+    <script>
+
+        // Pegando todas as tarefas
+        const tarefas = document.querySelectorAll(".tarefa");
+
+        // Pegando a área de destino
+        const concluido = document.getElementById("concluido");
+
+        // Pegando a mensagem
+        const mensagem = document.getElementById("mensagem");
+
+        // Quando começa a arrastar
+        tarefas.forEach(function(tarefa) {
+
+            tarefa.addEventListener("dragstart", function(event) {
+
+                event.dataTransfer.setData("text", event.target.innerText);
+
+            });
+
+        });
+
+        // Quando o elemento passa por cima da área
+        concluido.addEventListener("dragover", function(event) {
+
+            event.preventDefault();
+
+            concluido.classList.add("destaque");
+
+        });
+
+        // Quando sai da área
+        concluido.addEventListener("dragleave", function() {
+
+            concluido.classList.remove("destaque");
+
+        });
+
+        // Quando solta o elemento
+        concluido.addEventListener("drop", function(event) {
+
+            event.preventDefault();
+
+            const texto = event.dataTransfer.getData("text");
+
+            // Cria uma nova tarefa
+            const novaTarefa = document.createElement("div");
+
+            novaTarefa.classList.add("tarefa");
+
+            novaTarefa.innerText = texto;
+
+            // Coloca a tarefa na área concluído
+            concluido.appendChild(novaTarefa);
+
+            // Remove a tarefa da área original
+            tarefas.forEach(function(tarefa) {
+
+                if (tarefa.innerText === texto) {
+                    tarefa.remove();
+                }
+
+            });
+
+            // Remove o destaque
+            concluido.classList.remove("destaque");
+
+            // Feedback para o usuário
+            mensagem.innerText = "Tarefa concluída com sucesso!";
+
+        });
+
+    </script>
+
+</body>
+</html>
