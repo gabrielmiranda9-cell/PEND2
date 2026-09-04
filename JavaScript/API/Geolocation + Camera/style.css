@@ -1,0 +1,310 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f2f2f2;
+    color: #222;
+}
+
+
+/* CABEÇALHO */
+
+header {
+    background-color: #1b1b1b;
+    color: white;
+
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 8%;
+
+    border-bottom: 5px solid #e30613;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #e30613;
+}
+
+.senai {
+    background-color: #e30613;
+
+    color: white;
+
+    font-size: 30px;
+    font-weight: bold;
+
+    padding: 8px 20px;
+
+    transform: skew(-5deg);
+}
+
+
+/* CONTEÚDO PRINCIPAL */
+
+main {
+    width: 90%;
+    max-width: 1100px;
+
+    margin: 40px auto;
+}
+
+
+/* TÍTULO */
+
+.titulo {
+    background-color: white;
+
+    padding: 30px;
+
+    border-left: 6px solid #e30613;
+
+    margin-bottom: 30px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.titulo h1 {
+    color: #e30613;
+
+    margin-bottom: 12px;
+
+    font-size: 30px;
+}
+
+.titulo p {
+    color: #555;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+}
+
+.titulo strong {
+    color: #008fc5;
+}
+
+
+/* CARDS */
+
+.container {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+}
+
+.card {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 8px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
+}
+
+.card h2 {
+    color: #008fc5;
+
+    margin-bottom: 15px;
+
+    font-size: 23px;
+}
+
+.card p {
+    color: #555;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+
+/* BOTÕES */
+
+button {
+    background-color: #e30613;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 5px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #b9000b;
+
+    transform: translateY(-2px);
+}
+
+
+/* RESULTADO DA LOCALIZAÇÃO */
+
+.resultado {
+    background-color: #f5f5f5;
+
+    border-left: 4px solid #008fc5;
+
+    margin-top: 20px;
+
+    padding: 15px;
+}
+
+.resultado div {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.resultado div:last-child {
+    border-bottom: none;
+}
+
+.resultado span {
+    color: #555;
+}
+
+.resultado strong {
+    color: #222;
+}
+
+
+/* CÂMERA */
+
+.camera-container {
+    width: 100%;
+
+    margin-top: 20px;
+
+    background-color: #111;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    min-height: 230px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+video {
+    width: 100%;
+
+    display: block;
+
+    min-height: 230px;
+
+    object-fit: cover;
+}
+
+
+/* MENSAGENS */
+
+.mensagem {
+    margin-top: 15px;
+
+    font-weight: bold;
+}
+
+
+/* INFORMAÇÃO */
+
+.informacao {
+    background-color: #1b1b1b;
+
+    color: white;
+
+    margin-top: 30px;
+
+    padding: 25px;
+
+    border-left: 6px solid #e30613;
+
+    border-radius: 5px;
+}
+
+.informacao h2 {
+    color: #fff;
+
+    margin-bottom: 10px;
+}
+
+.informacao p {
+    color: #ddd;
+
+    line-height: 1.6;
+}
+
+
+/* RODAPÉ */
+
+footer {
+    background-color: #1b1b1b;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 20px;
+
+    margin-top: 40px;
+
+    border-top: 4px solid #e30613;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 750px) {
+
+    header {
+        padding: 0 5%;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .senai {
+        font-size: 22px;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    main {
+        width: 94%;
+    }
+
+    .titulo h1 {
+        font-size: 25px;
+    }
+}
