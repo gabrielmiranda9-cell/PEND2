@@ -1,115 +1,81 @@
-// ==========================================
-// GEOLOCALIZAÇÃO
-// ==========================================
+// ==========================
+// GEOLOCATION
+// ==========================
 
-const btnLocalizacao = document.querySelector("#btnLocalizacao");
+function obterLocalizacao() {
 
-const latitude = document.querySelector("#latitude");
-const longitude = document.querySelector("#longitude");
-const precisao = document.querySelector("#precisao");
+    if (navigator.geolocation) {
 
-const mensagemLocalizacao =
-    document.querySelector("#mensagemLocalizacao");
+        navigator.geolocation.getCurrentPosition(
+            function (posicao) {
 
+                const latitude = posicao.coords.latitude;
+                const longitude = posicao.coords.longitude;
+                const precisao = posicao.coords.accuracy;
 
-btnLocalizacao.addEventListener("click", function () {
+                document.getElementById("latitude").innerText =
+                    "Latitude: " + latitude;
 
-    if (!navigator.geolocation) {
+                document.getElementById("longitude").innerText =
+                    "Longitude: " + longitude;
 
-        mensagemLocalizacao.textContent =
-            "Geolocalização não é suportada pelo navegador.";
+                document.getElementById("precisao").innerText =
+                    "Precisão: " + precisao + " metros";
+            },
 
-        return;
-    }
-
-    mensagemLocalizacao.textContent =
-        "Obtendo localização...";
-
-
-    navigator.geolocation.getCurrentPosition(
-
-        function (posicao) {
-
-            const lat = posicao.coords.latitude;
-            const long = posicao.coords.longitude;
-            const accuracy = posicao.coords.accuracy;
-
-
-            latitude.textContent = lat;
-            longitude.textContent = long;
-            precisao.textContent = accuracy + " metros";
-
-
-            mensagemLocalizacao.textContent =
-                "✓ Localização obtida com sucesso!";
-
-        },
-
-
-        function (erro) {
-
-            console.log(
-                "Não foi possível obter a localização:",
-                erro
-            );
-
-            mensagemLocalizacao.textContent =
-                "Não foi possível obter a localização.";
-
-        }
-
-    );
-
-});
-
-
-
-// ==========================================
-// CÂMERA
-// ==========================================
-
-const btnCamera = document.querySelector("#btnCamera");
-
-const video = document.querySelector("#camera");
-
-const mensagemCamera =
-    document.querySelector("#mensagemCamera");
-
-
-btnCamera.addEventListener("click", function () {
-
-    mensagemCamera.textContent =
-        "Solicitando acesso à câmera...";
-
-
-    navigator.mediaDevices.getUserMedia({
-
-        video: true
-
-    })
-
-    .then(function (stream) {
-
-        video.srcObject = stream;
-
-        mensagemCamera.textContent =
-            "✓ Câmera ativada com sucesso!";
-
-        btnCamera.textContent =
-            "Câmera Ativa";
-
-    })
-
-    .catch(function (erro) {
-
-        console.log(
-            "Não foi possível acessar a câmera:",
-            erro
+            function () {
+                alert("Não foi possível obter a localização.");
+            }
         );
 
-        mensagemCamera.textContent =
-            "Não foi possível acessar a câmera.";
+    } else {
+        alert("Geolocation não é suportada pelo navegador.");
+    }
+}
 
-    });
+
+// ==========================
+// CÂMERA
+// ==========================
+
+navigator.mediaDevices.getUserMedia({
+    video: true
+})
+
+.then(function (stream) {
+
+    const video = document.getElementById("camera");
+
+    video.srcObject = stream;
+
+})
+
+.catch(function (erro) {
+
+    console.log("Não foi possível acessar a câmera:", erro);
 
 });
+
+
+// ==========================
+// TIRAR FOTO
+// ==========================
+
+function tirarFoto() {
+
+    const video = document.getElementById("camera");
+    const canvas = document.getElementById("foto");
+
+    const contexto = canvas.getContext("2d");
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    contexto.drawImage(
+        video,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+}

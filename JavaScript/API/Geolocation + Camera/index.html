@@ -1,131 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Registro de Visita Técnica</title>
+    <title>Geolocation e Câmera</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <header>
-        <div class="logo">
-            PEND - API
-        </div>
+    <h1>Geolocation e Câmera</h1>
 
-        <div class="senai">
-            SENAI
-        </div>
-    </header>
+    <!-- LOCALIZAÇÃO -->
+    <section>
+        <h2>Minha Localização</h2>
 
+        <button onclick="obterLocalizacao()">
+            Obter Localização
+        </button>
 
-    <main>
+        <p id="latitude">Latitude: --</p>
+        <p id="longitude">Longitude: --</p>
+        <p id="precisao">Precisão: --</p>
+    </section>
 
-        <section class="titulo">
-            <h1>Registro de Visita Técnica</h1>
+    <!-- CÂMERA -->
+    <section>
+        <h2>Câmera</h2>
 
-            <p>
-                Sistema desenvolvido utilizando as Web APIs
-                <strong>Geolocation</strong> e <strong>Camera</strong>.
-            </p>
-        </section>
+        <video id="camera" autoplay></video>
 
+        <br>
 
-        <section class="container">
+        <button onclick="tirarFoto()">
+            Tirar Foto
+        </button>
 
-            <!-- LOCALIZAÇÃO -->
-            <div class="card">
+        <h3>Foto tirada:</h3>
 
-                <h2>📍 Geolocalização</h2>
-
-                <p>
-                    Clique no botão abaixo para obter a localização
-                    atual do dispositivo.
-                </p>
-
-                <button id="btnLocalizacao">
-                    Obter Localização
-                </button>
-
-                <div id="resultadoLocalizacao" class="resultado">
-
-                    <div>
-                        <span>Latitude:</span>
-                        <strong id="latitude">--</strong>
-                    </div>
-
-                    <div>
-                        <span>Longitude:</span>
-                        <strong id="longitude">--</strong>
-                    </div>
-
-                    <div>
-                        <span>Precisão:</span>
-                        <strong id="precisao">--</strong>
-                    </div>
-
-                </div>
-
-                <p id="mensagemLocalizacao" class="mensagem"></p>
-
-            </div>
-
-
-            <!-- CÂMERA -->
-            <div class="card">
-
-                <h2>📷 Câmera</h2>
-
-                <p>
-                    Clique no botão para permitir o acesso à câmera
-                    do dispositivo.
-                </p>
-
-                <button id="btnCamera">
-                    Ativar Câmera
-                </button>
-
-                <div class="camera-container">
-
-                    <video id="camera" autoplay playsinline></video>
-
-                </div>
-
-                <p id="mensagemCamera" class="mensagem"></p>
-
-            </div>
-
-        </section>
-
-
-        <section class="informacao">
-
-            <h2>Sobre o registro</h2>
-
-            <p>
-                Este sistema permite registrar uma visita técnica
-                utilizando a localização do dispositivo e a câmera.
-                A geolocalização informa as coordenadas e a precisão
-                do local, enquanto a câmera permite visualizar a imagem
-                diretamente na página.
-            </p>
-
-        </section>
-
-    </main>
-
-
-    <footer>
-        <p>Atividade Prática - Geolocation e Camera</p>
-    </footer>
-
+        <canvas id="foto"></canvas>
+    </section>
 
     <script src="script.js"></script>
 
 </body>
-
 </html>
